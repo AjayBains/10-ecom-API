@@ -14,6 +14,7 @@ const connectDB = require("./db/connect");
 
 // routers
 const authRouter = require("./routes/authRoutes");
+const userRouter = require("./routes/userRoutes");
 
 // middleware
 
@@ -25,13 +26,14 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.get("/", (req, res) => {
-//   console.log("cookies", req.cookies);
+  //   console.log("cookies", req.cookies);
   console.log("cookies", req.signedCookies);
 
   res.send("e-commerce-API");
 });
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
