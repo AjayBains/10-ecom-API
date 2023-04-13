@@ -1,4 +1,4 @@
-## Hosted Project
+<!-- ## Hosted Project
 
 [E-Commerce API Heroku URL](https://e-commerce-api-10.herokuapp.com/)
 
@@ -373,4 +373,4 @@
 - [] heroku create "App Name"
 - [] git remote -v
 - [] setup env vars in GUI
-- [] git push heroku master/main
+- [] git push heroku master/main -->

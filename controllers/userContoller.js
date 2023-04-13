@@ -15,13 +15,28 @@ const getSingleUSer = async (req, res) => {
   res.status(StatusCodes.OK).json({ user });
 };
 const showCurrentUser = async (req, res) => {
-  res.status(StatusCodes.OK).json({user:req.user} );
+  res.status(StatusCodes.OK).json({ user: req.user });
 };
 const updateUser = async (req, res) => {
   res.send("update user route");
 };
 const updateUserPassword = async (req, res) => {
-  res.send("update user password");
+  const { oldPassword, newPassword } = req.body;
+  if (!oldPassword || !newPassword) {
+    throw new CustomError.BadRequestError(
+      "Please provid current and ne wpassword"
+    );
+  }
+  const user = await User.findOne({ _id: req.user.userId });
+
+  const isPasswordCorrect = await user.comparePassword(oldPassword);
+  if (!isPasswordCorrect) {
+    throw new CustomError.UnauthenticatedError("INvalid credntials");
+  }
+  user.password = newPassword;
+
+  await user.save();
+  res.status(StatusCodes.OK).json({ msg: "Success! passowrd updated" });
 };
 
 module.exports = {
