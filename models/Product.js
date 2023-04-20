@@ -41,6 +41,7 @@ const ProductSchema = new mongoose.Schema(
     },
     colors: {
       type: [String],
+      default: ["#222"],
       required: true,
     },
     featured: {
@@ -54,7 +55,7 @@ const ProductSchema = new mongoose.Schema(
     inventory: {
       type: Number,
       required: true,
-      defult: 15,
+      default: 15,
     },
     averageRating: {
       type: Number,
