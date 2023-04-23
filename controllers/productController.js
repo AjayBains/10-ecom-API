@@ -44,6 +44,7 @@ const deleteProduct = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ msg: "Success product removed" });
 };
+
 const uploadImage = async (req, res) => {
   // console.log('log re files',req.files);
   if (!req.files) {
