@@ -16,6 +16,6 @@ router
   .route("/:id")
   .get(getSingleReview)
   .patch(authenticateUser, updateReview)
-  .delete(deleteReview);
+  .delete(authenticateUser, deleteReview);
 
 module.exports = router;
