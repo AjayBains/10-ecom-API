@@ -7,7 +7,7 @@ const createProduct = async (req, res) => {
   req.body.user = req.user.userId;
   const product = await Product.create(req.body);
   res.status(StatusCodes.CREATED).json({ product });
-  res.send("createProduct");
+  // res.send("createProduct");
 };
 const getAllProducts = async (req, res) => {
   const products = await Product.find({});
@@ -15,7 +15,7 @@ const getAllProducts = async (req, res) => {
 };
 const getSingleProduct = async (req, res) => {
   const { id: productId } = req.params;
-  const product = await Product.find({ _id: productId });
+  const product = await Product.find({ _id: productId }).populate("reviews");
   if (!product) {
     throw new customError.NotFoundError(`No product with id :${productId}`);
   }
@@ -71,6 +71,8 @@ const uploadImage = async (req, res) => {
   await productImage.mv(imagePath);
   res.status(StatusCodes.OK).json({ image: `/uploads/${productImage.name}` });
 };
+
+
 
 module.exports = {
   createProduct,

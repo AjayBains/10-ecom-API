@@ -29,7 +29,6 @@ const updateUser = async (req, res) => {
   if (!email || !name) {
     throw new CustomError.BadRequestError("Please provide all values");
   }
-  console.log("reQEST", req.user);
   const user = await User.findOne({ _id: req.user.userId }); // user coming from authenticateUser middleware which attaches user to  every request coming next
 
   user.email = email;
